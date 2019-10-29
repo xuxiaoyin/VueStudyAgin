@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import List from '../views/List.vue'
 import Detail from '../views/Detail.vue'
+import store from '../store'
 
 Vue.use(VueRouter)
 
@@ -25,6 +26,13 @@ const routes = [
   {
     path: '/about',
     name: 'about',
+    beforeEnter: (to, from, next) => {
+      if (!store.state.isLogin) {
+        next('/login?redirect='+to.path)
+      } else {
+        next()
+      }
+    },
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
@@ -38,12 +46,12 @@ const router = new VueRouter({
   base: process.env.BASE_URL
 })
 
-router.beforeEach((to, from, next) => {
-  if (to.path === '/about' && !window.isLogin) {
-    next('/login')
-  } else {
-    next()
-  }
-})
+// router.beforeEach((to, from, next) => {
+//   if (to.path === '/about' && !window.isLogin) {
+//     next('/login?redirect='+to.path)
+//   } else {
+//     next()
+//   }
+// })
 
 export default router

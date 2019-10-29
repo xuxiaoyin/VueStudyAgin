@@ -2,7 +2,8 @@
   <div id="app">
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link> | 
-    <router-link to="/login">Login</router-link>
+    <router-link to="/login" v-if="!$store.state.isLogin">Login</router-link>
+    <span v-else>欢迎回来</span>
     <router-view></router-view>
   </div>
 </template>
