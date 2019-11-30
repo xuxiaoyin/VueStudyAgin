@@ -20,8 +20,9 @@ class KStore {
   dispatch(type, payload) {
     const action = this.actions[type]
     const ctx = {
-      commit: this.commit,
+      commit: this.commit.bind(this),
       state: this.state
+      dispatch: this.dispatch.bind(this)
     }
     return action(ctx, payload)
   }

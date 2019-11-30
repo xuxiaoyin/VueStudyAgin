@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import List from '../views/List.vue'
 import Detail from '../views/Detail.vue'
+import Cart from '../views/Cart.vue'
 import store from '../store'
 
 Vue.use(VueRouter)
@@ -16,6 +17,7 @@ const routes = [
     children: [
       {path: '', component: List},
       {path: '/detail/:id', component: Detail, props: true},
+      {path: '/cart', component: Cart},
     ]
   },
   {
